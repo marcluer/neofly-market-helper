@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NeoFly Market</title>
+    <meta charset="utf-8" />
+	<script type='text/javascript'>
+    function GetMap() {
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: '{{ bingkey }}',
+			center: new Microsoft.Maps.Location( '{{ map_center_lat }}', '{{ map_center_lng }}'),
+			zoom: {{ zoom_level }}
+        });
+
+        function addPin(lat, lng, title, subTitle, color){
+            var pin = new Microsoft.Maps.Pushpin(
+                new Microsoft.Maps.Location(lat, lng),{title: title, subTitle:subTitle, color: color});
+            map.entities.push(pin);
+        }
+        {% for airport in airports %}
+        addPin({{airport.laty}}, {{airport.lonx}}, '{{airport.icao}}', '{% if airport.tradetype == 1 %}Buy{% else %}Sell{% endif %} {{airport.quantity}} @ ${{airport.unitprice}}', {% if airport.tradetype == 1 %}'red'{% else %}'green'{% endif %});   {%endfor %}
+
+    }
+    </script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+</head>
+<body>
+    <div id="myMap" style="position:relative;"></div>
+</body>
+</html>
