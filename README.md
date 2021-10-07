@@ -3,7 +3,7 @@
 Helper scripts to assist trading in NeoFly.
 
 ## Installation
-- NeoFly and Python (3.9+) need to be installed
+- NeoFly and Python (3.9) need to be installed
 - Download neofly-market-helper either by:
   - Clicking on "Code" - "Download ZIP" above or
   - `git clone https://github.com/marcluer/neofly-market-helper.git`
