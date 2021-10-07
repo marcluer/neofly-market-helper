@@ -3,7 +3,7 @@
 Helper scripts to assist trading in NeoFly.
 
 ## Installation
-- NeoFly and Python (3.x) need to be installed
+- NeoFly and Python (3.9+) need to be installed
 - Download neofly-market-helper either by:
   - Clicking on "Code" - "Download ZIP" above or
   - `git clone https://github.com/marcluer/neofly-market-helper.git`
@@ -17,10 +17,13 @@ Helper scripts to assist trading in NeoFly.
   db_file = 'C:/ProgramData/NeoFly/common.db'
   neofly_window_name = 'NeoFly 3.11.4'                  # needed for interfacing with the NeoFly gui
 
-  good = 'Caviar'
+  # variables for scanning markets
+  airport_icao = 'EDDW'       # scan around this airport...
+  scan_radius = 50            # ...with this radius
 
-  map_center_lat = '40.416775'
-  map_center_lng = '-3.703790'
+  # variables for generating map
+  # airport_icao from above is also used for generating map
+  good = 'Caviar'
   zoom_level = '6'
   ```
   
