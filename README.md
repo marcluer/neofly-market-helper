@@ -42,3 +42,6 @@ NeoFly itself does not need to be running for this script.<br>
 This script will access the NeoFly database and fetch a list of airports that buy/sell the specified goods.<br>
 A map will be generated with these airports and be saved as index.html <br>
 Now simply open the index.html in the browser of your choice.
+
+## Example
+![This is an image](/doc/screenshot_LE+LP.png)
