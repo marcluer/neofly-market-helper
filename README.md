@@ -15,16 +15,16 @@ Helper scripts to assist trading in NeoFly.
   ```
   bingkey = 'AddYourBingKeyHere'
   db_file = 'C:/ProgramData/NeoFly/common.db'
-  neofly_window_name = 'NeoFly 3.11.4'                  # needed for interfacing with the NeoFly gui
+  neofly_window_name = 'NeoFly 3.12'                  # needed for interfacing with the NeoFly gui
 
   # variables for scanning markets
   airport_icao = 'EDDW'       # scan around this airport...
-  scan_radius = 50            # ...with this radius
+  scan_radius = 20            # ...with this radius
 
   # variables for generating map
   # airport_icao from above is also used for generating map
   good = 'Caviar'
-  zoom_level = '6'
+  zoom_level = '7'
   ```
   
 ## Running

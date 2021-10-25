@@ -42,6 +42,8 @@ def get_airports_list():
 def scan_markets(airports):
     total_airports = len(airports)
     print("Scanning " + str(total_airports) + " airports:")
+    print(airports)
+
     neowin = auto.WindowControl(searchDepth=1, Name=neofly_window_name)
     neowin.SetActive()
 
@@ -73,6 +75,4 @@ if __name__ == "__main__":
     airports = get_airports_list()
     
     #airports = airports[0:3]   # uncomment for testing purposes (= limit number of queries)
-    #print(airports)
-     
     scan_markets(airports)

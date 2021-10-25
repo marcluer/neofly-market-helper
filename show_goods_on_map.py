@@ -4,6 +4,8 @@ import pandas as pd
 from flask import render_template
 import flask
 import config
+import datetime
+from dateutil.relativedelta import relativedelta
 
 db_url = 'file:' + config.db_file + '?mode=ro'                              # build database file url
 airport_icao = config.airport_icao
@@ -34,23 +36,33 @@ def get_airports_that_trade(good):
     db.close()
    
     df = goodsMarket_df[goodsMarket_df['name'] == good]
-    df = df[['location','unitprice','quantity','tradetype']]                # get only columns: location, unitprice, quantity, tradetype
+    df = df[['location','unitprice','quantity','tradetype', 'refreshdate']] # get only columns: location, unitprice, quantity, tradetype, date
     df = df.rename(columns={'location':'icao'})                             # rename column location to icao
     df.set_index('icao', inplace=True)                                      # set column icao as index
     
     return df
 
+def calculate_age(refreshdate_str):
+    refreshdate_obj = datetime.datetime.strptime(refreshdate_str, '%d.%m.%Y %H:%M:%S')
+    today = datetime.datetime.now()
+    
+    diff = (today - refreshdate_obj)
+    age = diff.days * 24 + diff.seconds // 3600
+    
+    return age
 
 if __name__ == "__main__":
     good = config.good
     all_airports = get_airports_list()                                      # call function to retrieve full airport list (for lat/long information)
-    airports_with_good = get_airports_that_trade(good)               # call function to retrieve list of airports trading selected good
-    
+    airports_with_good = get_airports_that_trade(good)                      # call function to retrieve list of airports trading selected good
+
     airports_with_good = pd.merge(airports_with_good, all_airports, how="left", on="icao")  # merge dataframes to get list of airports with lat/long
     airports_list = airports_with_good.reset_index().to_dict('records')     # convert dataframe to list of dicts (for easy flask usage)
+    
+    airports_list = [x for x in airports_list if calculate_age(x['refreshdate']) < 72]  # filter out airports that have been refreshed more than 72h ago
 
-    #for airport in airports_list:                                           # print list to terminal
-    #    print(airport)
+    for airport in airports_list:                                           # print list to terminal
+        print(airport)
 
     map_center_coords = get_search_airport_lat_lng(airport_icao, all_airports)
     map_center_lat, map_center_lng = map_center_coords
