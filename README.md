@@ -15,7 +15,7 @@ Helper scripts to assist trading in NeoFly.
   ```
   bingkey = 'AddYourBingKeyHere'
   db_file = 'C:/ProgramData/NeoFly/common.db'
-  neofly_window_name = 'NeoFly 3.12'                  # needed for interfacing with the NeoFly gui
+  neofly_window_name = 'NeoFly 3.13'                  # needed for interfacing with the NeoFly gui
 
   # variables for scanning markets
   airport_icao = 'EDDW'       # scan around this airport...
