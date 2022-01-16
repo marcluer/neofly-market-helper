@@ -43,7 +43,13 @@ def get_airports_that_trade(good):
     return df
 
 def calculate_age(refreshdate_str):
-    refreshdate_obj = datetime.datetime.strptime(refreshdate_str, '%d.%m.%Y %H:%M:%S')
+    try:
+        refreshdate_obj = datetime.datetime.strptime(refreshdate_str, '%d/%m/%Y %H:%M:%S')
+    except ValueError:
+        try:
+            refreshdate_obj = datetime.datetime.strptime(refreshdate_str, '%d.%m.%Y %H:%M:%S')
+        except:
+            pass
     today = datetime.datetime.now()
     
     diff = (today - refreshdate_obj)
