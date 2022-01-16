@@ -8,7 +8,9 @@ Helper scripts to assist trading in NeoFly.
   - Clicking on "Code" - "Download ZIP" above or
   - `git clone https://github.com/marcluer/neofly-market-helper.git`
 - Install Python requirements:
-  - `pip3 install --requirements requirements.txt`
+  - `pip3 install --requirement requirements.txt`
+   or
+  - `pip3 install -r requirements.txt`
 
 ## Configuration
 - Create a `config.py` in the neofly-market-helper directory with the following contents:
